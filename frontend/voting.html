@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vote on Battle - Producer Pro-League</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">Producer Pro-League</a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="voting.html" class="nav-link active">Top Matches</a>
+                <a href="lobby.html" class="nav-link">Current Match</a>
+            </div>
+            <div class="nav-profile">
+                <div class="profile-info">
+                    <span class="profile-name">Guest User</span>
+                    <span class="profile-elo">1500 ELO</span>
+                </div>
+                <div class="profile-avatar"></div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header class="header">
+            <h1>Vote on Battle</h1>
+            <p>Listen to both tracks and distribute 10 points between them</p>
+        </header>
+
+        <main>
+            <div class="original-sample card">
+                <h2>Original Sample</h2>
+                <div class="waveform" id="sampleWaveform"></div>
+                <div class="audio-controls">
+                    <button class="btn btn-secondary" id="playSampleBtn">Play Sample</button>
+                </div>
+            </div>
+
+            <div class="battle-tracks card">
+                <div class="track-container">
+                    <h2>Track A</h2>
+                    <div class="waveform" id="trackAWaveform"></div>
+                    <div class="audio-controls">
+                        <button class="btn" id="playTrackABtn">Play Track A</button>
+                    </div>
+                    <div class="points-control">
+                        <label>Points:</label>
+                        <input type="number" id="trackAPoints" min="0" max="10" value="5">
+                    </div>
+                </div>
+
+                <div class="track-container">
+                    <h2>Track B</h2>
+                    <div class="waveform" id="trackBWaveform"></div>
+                    <div class="audio-controls">
+                        <button class="btn" id="playTrackBBtn">Play Track B</button>
+                    </div>
+                    <div class="points-control">
+                        <label>Points:</label>
+                        <input type="number" id="trackBPoints" min="0" max="10" value="5">
+                    </div>
+                </div>
+            </div>
+
+            <div class="voting-controls card">
+                <p>Remaining listening time: <span id="listenTimer">10s</span></p>
+                <button class="btn btn-large" id="submitVoteBtn" disabled>Submit Vote</button>
+            </div>
+        </main>
+    </div>
+</body>
+</html> 

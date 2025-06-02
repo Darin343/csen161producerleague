@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Match Lobby - Producer Pro-League</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">Producer Pro-League</a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="voting.html" class="nav-link">Top Matches</a>
+                <a href="lobby.html" class="nav-link active">Current Match</a>
+            </div>
+            <div class="nav-profile">
+                <div class="profile-info">
+                    <span class="profile-name">Guest User</span>
+                    <span class="profile-elo">1500 ELO</span>
+                </div>
+                <div class="profile-avatar"></div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header class="header">
+            <h1>Match Lobby</h1>
+            <div id="matchTimer" class="timer">Waiting for opponent...</div>
+        </header>
+
+        <main>
+            <div class="match-info card">
+                <div class="players">
+                    <div class="player-card">
+                        <h3>You</h3>
+                        <div class="elo">ELO: <span id="playerElo">1500</span></div>
+                    </div>
+                    <div class="vs">VS</div>
+                    <div class="player-card">
+                        <h3 id="opponentName">Waiting...</h3>
+                        <div class="elo">ELO: <span id="opponentElo">--</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sample-section card">
+                <h2>Sample</h2>
+                <div class="waveform" id="waveform">
+                    <!-- Waveform will be rendered here -->
+                </div>
+                <div class="audio-controls">
+                    <button class="btn" id="playBtn">Play Sample</button>
+                </div>
+            </div>
+
+            <div class="actions card">
+                <button class="btn" id="startBtn" disabled>Start Production</button>
+                <button class="btn btn-secondary" id="skipBtn">Skip Match</button>
+            </div>
+        </main>
+    </div>
+</body>
+</html> 

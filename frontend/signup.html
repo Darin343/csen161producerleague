@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="header">
+                <h1>Sign Up</h1>
+            </div>
+            <form id="signupForm" class="upload-form">
+                <div class="form-group card">
+                    <input type="text" id="username" name="username" required 
+                           class="filter-select" style="width: 100%; margin-bottom: var(--spacing-md);">
+                    <label for="username">Username</label>
+                </div>
+                <div class="form-group card">
+                    <input type="password" id="password" name="password" required 
+                           class="filter-select" style="width: 100%; margin-bottom: var(--spacing-md);">
+                    <label for="password">Password</label>
+                </div>
+                <div class="form-group card">
+                    <input type="password" id="confirmPassword" name="confirmPassword" required 
+                           class="filter-select" style="width: 100%; margin-bottom: var(--spacing-md);">
+                    <label for="confirmPassword">Confirm Password</label>
+                </div>
+                <div class="form-group card">
+                    <input type="text" id="producerName" name="producerName" 
+                           class="filter-select" style="width: 100%; margin-bottom: var(--spacing-sm);">
+                    <label for="producerName">Producer Name (optional)</label>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                        If you're a producer, enter your name here. 'Prod.' will be added automatically.
+                    </p>
+                </div>
+                <button type="submit" class="btn btn-large">Sign Up</button>
+                <p style="text-align: center; margin-top: var(--spacing-md);">
+                    Already have an account? 
+                    <a href="login.html" class="nav-link" style="display: inline;">Login</a>
+                </p>
+            </form>
+        </div>
+    </div>
+    <script src="js/signup.js"></script>
+</body>
+</html> 
