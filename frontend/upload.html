@@ -5,16 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload Track - Producer Pro-League</title>
     <link rel="stylesheet" href="css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <nav class="nav-bar">
         <div class="nav-container">
-            <a href="index.html" class="nav-brand">Producer Pro-League</a>
+            <a href="index.html" class="nav-brand">Producer League</a>
             <div class="nav-links">
                 <a href="index.html" class="nav-link">Home</a>
-                <a href="leaderboard.html" class="nav-link">Leaderboard</a>
                 <a href="voting.html" class="nav-link">Top Matches</a>
+                <a href="lobby.html" class="nav-link">Current Match</a>
+
             </div>
             <div class="nav-profile">
                 <div class="profile-info">
@@ -29,7 +30,6 @@
     <div class="container">
         <header class="header">
             <h1>Upload Your Track</h1>
-            <div id="productionTimer" class="timer">Time Remaining: 30:00</div>
         </header>
 
         <main>
@@ -61,5 +61,12 @@
             </div>
         </main>
     </div>
+    <footer>
+        <p>© 2025 Producer Pro-League. All rights reserved.
+            <a href="#" id="signOutLink" style="display: none; margin-left: 15px; color: #007bff;">Sign Out</a>
+        </p>
+    </footer>
+    <script src="./js/auth-status.js"></script>
+    <script src="./js/upload.js" defer></script>
 </body>
 </html> 

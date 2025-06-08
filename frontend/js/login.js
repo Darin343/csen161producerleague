@@ -5,7 +5,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
     const password = document.getElementById('password').value;
     
     try {
-        const BASE_URL = window.location.origin + '/producerleague'; // Define BASE_URL
+        const BASE_URL = window.location.origin + '/producerleague'; //get BASE_URL
         const response = await fetch(`${BASE_URL}/backend/api/auth/login.php`, {
             method: 'POST',
             headers: {
@@ -20,7 +20,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
             throw new Error(data.error || 'Login failed');
         }
         
-        // Login successful - redirect to home page
+        //login successful - redirect to home page
         window.location.href = `${BASE_URL}/frontend/index.html`;
         
     } catch (error) {

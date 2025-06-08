@@ -8,7 +8,7 @@ document.getElementById('signupForm').addEventListener('submit', async (e) => {
     const email = document.getElementById('email').value;
     
     if (password !== confirmPassword) {
-        alert('Passwords do not match');
+        alert('passwords do not match');
         return;
     }
     
@@ -30,10 +30,10 @@ document.getElementById('signupForm').addEventListener('submit', async (e) => {
         const data = await response.json();
         
         if (!response.ok || !data.success) {
-            throw new Error(data.error || 'Signup failed');
+            throw new Error(data.error || 'signup failed');
         }
         
-        // Signup successful - redirect to home page
+        //signup successful - redirect to home page
         window.location.href = `${BASE_URL}/frontend/index.html`;
         
     } catch (error) {

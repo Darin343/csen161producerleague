@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vote on Battle - Producer Pro-League</title>
+    <title>Battle Results - Producer Pro-League</title>
     <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
@@ -13,8 +13,8 @@
             <a href="index.html" class="nav-brand">Producer League</a>
             <div class="nav-links">
                 <a href="index.html" class="nav-link">Home</a>
-                <a href="voting.html" class="nav-link active">Top Matches</a>
-                <a href="complete.html" class="nav-link">Current Match</a>
+                <a href="voting.html" class="nav-link">Top Matches</a>
+                <a href="lobby.html" class="nav-link">Current Match</a>
             </div>
             <div class="nav-profile">
                 <div class="profile-info">
@@ -28,8 +28,8 @@
 
     <div class="container">
         <header class="header">
-            <h1>Vote on Battle</h1>
-            <p>Listen to both tracks and distribute 10 points between them</p>
+            <h1>Battle Results</h1>
+            <p>Final vote totals for this battle</p>
         </header>
 
         <main>
@@ -48,9 +48,9 @@
                     <div class="audio-controls">
                         <button class="btn" id="playTrackABtn">Play Track A</button>
                     </div>
-                    <div class="points-control">
-                        <label>Points:</label>
-                        <input type="number" id="trackAPoints" min="0" max="10" value="5">
+                    <div class="vote-total">
+                        <label>Total Votes:</label>
+                        <span class="vote-count" id="trackAVotes">0</span>
                     </div>
                 </div>
 
@@ -60,16 +60,19 @@
                     <div class="audio-controls">
                         <button class="btn" id="playTrackBBtn">Play Track B</button>
                     </div>
-                    <div class="points-control">
-                        <label>Points:</label>
-                        <input type="number" id="trackBPoints" min="0" max="10" value="5">
+                    <div class="vote-total">
+                        <label>Total Votes:</label>
+                        <span class="vote-count" id="trackBVotes">0</span>
                     </div>
                 </div>
             </div>
 
-            <div class="voting-controls card">
-                <p>Remaining listening time: <span id="listenTimer">10s</span></p>
-                <button class="btn btn-large" id="submitVoteBtn" disabled>Submit Vote</button>
+            <div class="battle-results card">
+                <h2>Battle Summary</h2>
+                <div class="results-summary">
+                    <p>Total Voters: <span id="totalVoters">0</span></p>
+                    <p>Battle Status: <span id="battleStatus">Complete</span></p>
+                </div>
             </div>
         </main>
     </div>

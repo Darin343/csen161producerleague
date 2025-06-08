@@ -1,16 +1,25 @@
 <?php
 function getDB() {
     try {
-        // Using absolute path to ensure database is always found
+        // using absolute path to ensure database is always found
         $db_path = __DIR__ . '/producerleague.db';
-        $db = new SQLite3($db_path);
         
-        // Set proper permissions
-        chmod($db_path, 0644);
+        if (!file_exists($db_path)) {
+            throw new Exception("database file not found at: $db_path");
+        }
+        
+        $db = new SQLite3($db_path);
+        $db->enableExceptions(true);
+        
+        if (!$db) {
+            throw new Exception("failed to create SQLite3 db");
+        }
         
         return $db;
     } catch (Exception $e) {
-        die("Database connection failed: " . $e->getMessage());
+        error_log("db_connect.php: " . $e->getMessage());
+        //JSON error response
+        throw new Exception("database connection failed");
     }
 }
 ?> 
