@@ -22,12 +22,12 @@ try {
     
     $stmt = $db->prepare('SELECT id, username, password_hash, producername, elo FROM users WHERE username = :username');
     if ($stmt === false) {
-        throw new Exception("Failed to prepare select user statement: " . $db->lastErrorMsg());
+        throw new Exception("failed to prepare select user statement: " . $db->lastErrorMsg());
     }
     $stmt->bindValue(':username', $data['username'], SQLITE3_TEXT);
     $result = $stmt->execute();
     if ($result === false) {
-        throw new Exception("Failed to execute select user statement: " . $db->lastErrorMsg());
+        throw new Exception("failed to execute select user statement: " . $db->lastErrorMsg());
     }
     
     $user = $result->fetchArray(SQLITE3_ASSOC);
@@ -55,7 +55,6 @@ try {
 
 } catch (Exception $e) {
     http_response_code(500);
-    error_log("Exception in login.php: " . $e->getMessage() . "\nStack trace:\n" . $e->getTraceAsString());
-    echo json_encode(['success' => false, 'error' => 'server error during login. ' . strtolower($e->getMessage())]);
+    error_log("err in login.php: " . $e->getMessage());
 }
 ?> 

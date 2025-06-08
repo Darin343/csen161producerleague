@@ -28,51 +28,64 @@
 
     <div class="container">
         <header class="header">
-            <h1>Vote on Battle</h1>
-            <p>Listen to both tracks and distribute 10 points between them</p>
+            <h1>Vote on Battles</h1>
+            <p>Listen to both tracks and cast your vote for the better one</p>
         </header>
 
         <main>
-            <div class="original-sample card">
-                <h2>Original Sample</h2>
-                <div class="waveform" id="sampleWaveform"></div>
-                <div class="audio-controls">
-                    <button class="btn btn-secondary" id="playSampleBtn">Play Sample</button>
-                </div>
+            <!-- No matches message (hidden by default) -->
+            <div id="no-matches-message" class="card" style="display: none; text-align: center;">
+                <h2>No matches to vote on</h2>
+                <p>Check back later for new battles to vote on!</p>
             </div>
 
-            <div class="battle-tracks card">
-                <div class="track-container">
-                    <h2>Track A</h2>
-                    <div class="waveform" id="trackAWaveform"></div>
-                    <div class="audio-controls">
-                        <button class="btn" id="playTrackABtn">Play Track A</button>
-                    </div>
-                    <div class="points-control">
-                        <label>Points:</label>
-                        <input type="number" id="trackAPoints" min="0" max="10" value="5">
-                    </div>
-                </div>
-
-                <div class="track-container">
-                    <h2>Track B</h2>
-                    <div class="waveform" id="trackBWaveform"></div>
-                    <div class="audio-controls">
-                        <button class="btn" id="playTrackBBtn">Play Track B</button>
-                    </div>
-                    <div class="points-control">
-                        <label>Points:</label>
-                        <input type="number" id="trackBPoints" min="0" max="10" value="5">
-                    </div>
-                </div>
+            <!-- Loading message -->
+            <div id="loading-message" class="card" style="text-align: center;">
+                <p>Loading matches...</p>
             </div>
 
-            <div class="voting-controls card">
-                <p>Remaining listening time: <span id="listenTimer">10s</span></p>
-                <button class="btn btn-large" id="submitVoteBtn" disabled>Submit Vote</button>
+            <!-- Match voting interface (hidden by default) -->
+            <div id="voting-interface" style="display: none;">
+                <div class="match-info card">
+                    <h2>Battle: <span id="player1Name"></span> vs <span id="player2Name"></span></h2>
+                    <p>Current votes: Track A (<span id="player1Votes">0</span>) - Track B (<span id="player2Votes">0</span>)</p>
+                </div>
+
+                <div class="battle-tracks card">
+                    <div class="track-container">
+                        <h3>Track A - <span id="player1NameTrack"></span></h3>
+                        <div class="audio-controls">
+                            <audio id="player1Audio" controls preload="metadata">
+                                <source id="player1Source" src="" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                        <div class="vote-control">
+                            <button class="btn btn-large vote-btn vote-a" id="votePlayer1Btn">Vote A</button>
+                        </div>
+                    </div>
+
+                    <div class="track-container">
+                        <h3>Track B - <span id="player2NameTrack"></span></h3>
+                        <div class="audio-controls">
+                            <audio id="player2Audio" controls preload="metadata">
+                                <source id="player2Source" src="" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                        <div class="vote-control">
+                            <button class="btn btn-large vote-btn vote-b" id="votePlayer2Btn">Vote B</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="voting-status card" style="text-align: center;">
+                    <p id="votingStatusText">Listen to both tracks and cast your vote</p>
+                </div>
             </div>
         </main>
     </div>
     <script src="./js/auth-status.js"></script>
+    <script src="./js/voting.js"></script>
 </body>
 </html> 

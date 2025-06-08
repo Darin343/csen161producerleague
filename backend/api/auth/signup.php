@@ -84,6 +84,5 @@ try {
 
 } catch (Exception $e) {
     http_response_code(500); 
-    error_log("Exception in signup.php: " . $e->getMessage() . "\nStack trace:\n" . $e->getTraceAsString());
-    echo json_encode(['success' => false, 'error' => 'server error during signup. ' . strtolower($e->getMessage())]); 
+    error_log("err in signup.php: " . $e->getMessage());
 } 

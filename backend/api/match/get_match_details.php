@@ -6,13 +6,13 @@ require_once __DIR__ . '/../../database/db_connect.php';
 
 if (!isset($_SESSION['user_id'])) {
     http_response_code(401);
-    echo json_encode(['success' => false, 'message' => 'User not logged in']);
+    echo json_encode(['success' => false, 'message' => 'user not logged in']);
     exit;
 }
 
 if (!isset($_GET['id'])) {
     http_response_code(400);
-    echo json_encode(['success' => false, 'message' => 'Match ID not provided']);
+    echo json_encode(['success' => false, 'message' => 'match id not given']);
     exit;
 }
 
@@ -20,6 +20,7 @@ $match_id = $_GET['id'];
 $db = getDB();
 
 try {
+
     $stmt = $db->prepare('
         SELECT
             m.id AS match_id,
@@ -36,24 +37,32 @@ try {
         LEFT JOIN users p2 ON m.player2_id = p2.id
         WHERE m.id = :match_id
     ');
+    
+    
     $stmt->bindValue(':match_id', $match_id, SQLITE3_INTEGER);
     $match = $stmt->execute()->fetchArray(SQLITE3_ASSOC);
 
+    
     if ($match) {
-        // Security check: ensure the logged-in user is part of this match
+
+
+        //if the user isnt in the match we cant let them see the details
         if ($match['player1_id'] != $_SESSION['user_id'] && $match['player2_id'] != $_SESSION['user_id']) {
             http_response_code(403);
-            echo json_encode(['success' => false, 'message' => 'You are not a participant in this match.']);
+            echo json_encode(['success' => false, 'message' => 'you are not a player in this match.']);
             exit;
         }
 
         echo json_encode(['success' => true, 'match' => $match]);
+    
     } else {
         http_response_code(404);
-        echo json_encode(['success' => false, 'message' => 'Match not found']);
+        echo json_encode(['success' => false, 'message' => 'match not found']);
     }
+
+
 
 } catch (Exception $e) {
     http_response_code(500);
-    echo json_encode(['success' => false, 'message' => 'Database error: ' . $e->getMessage()]);
+    echo json_encode(['success' => false, 'message' => 'database error: ' . $e->getMessage()]);
 } 

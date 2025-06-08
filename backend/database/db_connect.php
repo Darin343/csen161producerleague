@@ -1,7 +1,7 @@
 <?php
 function getDB() {
     try {
-        // using absolute path to ensure database is always found
+        // using absolute path
         $db_path = __DIR__ . '/producerleague.db';
         
         if (!file_exists($db_path)) {

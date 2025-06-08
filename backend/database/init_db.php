@@ -58,13 +58,29 @@ try {
         FOREIGN KEY (match_id) REFERENCES matches(id)
     )');
     
-    echo "Database initialized successfully!\n";
-    echo "Database location: $db_path\n";
+    //create voting table to prevent duplicate votes
+    $db->exec('CREATE TABLE IF NOT EXISTS votes (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        voter_id INTEGER NOT NULL,
+        match_id INTEGER NOT NULL,
+        voted_for INTEGER NOT NULL,
+        voted_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (voter_id) REFERENCES users(id),
+        FOREIGN KEY (match_id) REFERENCES matches(id),
+        UNIQUE(voter_id, match_id)
+    )');
+    
+    // Add vote count columns to matches table if they don't exist
+    $db->exec('ALTER TABLE matches ADD COLUMN player1_votes INTEGER DEFAULT 0');
+    $db->exec('ALTER TABLE matches ADD COLUMN player2_votes INTEGER DEFAULT 0');
+    
+
+    
+    echo "successful db init!\n";
     
 } catch (Exception $e) {
     header('Content-Type: text/plain');
-    echo "Error: " . $e->getMessage() . "\n";
-    echo "Stack trace:\n" . $e->getTraceAsString() . "\n";
-    error_log("Database initialization failed: " . $e->getMessage());
+    echo "error: " . $e->getMessage() . "\n";
+    error_log("database initialization failed: " . $e->getMessage());
 }
 ?> 

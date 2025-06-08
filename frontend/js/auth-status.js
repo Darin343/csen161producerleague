@@ -92,7 +92,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (!currentMatchLink) return;
 
         try {
+
             const response = await fetch(`${BASE_URL}/backend/api/match/get_current_match.php`);
+            
+            
             if (!response.ok) return; 
             const data = await response.json();
 
@@ -101,20 +104,20 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const hasUploaded = localStorage.getItem(`uploaded_${data.match_id}`) === 'true';
                 
                 if (hasUploaded) {
-                    // User has uploaded, show battle results
+                    //user has uploaded, show battle results
                     currentMatchLink.href = `${BASE_URL}/frontend/complete.html?match_id=${data.match_id}`;
                 } else if (matchStarted) {
-                    // Match started but user hasn't uploaded yet
+                    //match started but user hasn't uploaded yet
                     currentMatchLink.href = `${BASE_URL}/frontend/upload.html?match_id=${data.match_id}`;
                 } else {
-                    // Match not started yet
+                    //match not started yet
                     currentMatchLink.href = `${BASE_URL}/frontend/lobby.html?match_id=${data.match_id}`;
                 }
             } else {
                 currentMatchLink.href = `${BASE_URL}/frontend/lobby.html`;
             }
         } catch (error) {
-            console.error('Could not check for current match:', error);
+            console.error('could not check for current match:', error);
         }
     }
 
@@ -124,14 +127,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.log('requesting auth status from:', `${BASE_URL}/backend/api/auth/status.php`);
         
         if (!response.ok) {
-            throw new Error(`auth status check failed with HTTP status ${response.status}`);
+            throw new Error(`auth status check failed with http status ${response.status}`);
         }
         
         const authData = await response.json();
-        console.log('auth status response:', authData);
         
         if (authData.logged_in && authData.user) {
-            console.log('user is logged in:', authData.user);
 
             if (profileNameElement) profileNameElement.textContent = authData.user.producer_name;
             if (profileEloElement) profileEloElement.textContent = `${authData.user.elo} ELO`;
@@ -149,7 +150,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 quickMatchBtn.addEventListener('click', findMatch);
             }
         } else {
-            console.log('user is not logged in or authData is incomplete.');
+            console.log('user is not logged in or authData is incomplete');
             if (profileNameElement) profileNameElement.textContent = 'Guest User';
             if (profileEloElement) profileEloElement.textContent = '1500 ELO';
             
@@ -157,7 +158,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 signOutLink.style.display = 'none';
             }
             
-            const protectedPages = ['lobby.html', 'upload.html'];
+            const protectedPages = ['lobby.html', 'upload.html', 'voting.html'];
             const currentPage = window.location.pathname.split('/').pop();
 
             if (protectedPages.includes(currentPage)) {

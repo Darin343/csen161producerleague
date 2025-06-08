@@ -78,6 +78,9 @@ fetch('../backend/api/auth/upload.php', {
         // Mark that user has uploaded for this match
         localStorage.setItem(`uploaded_${matchId}`, 'true');
         
+        // Clear the match started flag since user is now done with this match
+        localStorage.removeItem(`match_started_${matchId}`);
+        
         submitBtn.disabled = true;
         fileInput.value = '';
         selectedFile = null;
